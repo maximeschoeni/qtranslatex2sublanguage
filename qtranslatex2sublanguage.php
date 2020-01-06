@@ -6,7 +6,6 @@ Version: 1.0
 */
 
 
-
 function migrate_post_qtranslatex2sublanguage($result) {
 	global $sublanguage_admin;
 
@@ -107,11 +106,6 @@ function migrate_post_qtranslatex2sublanguage($result) {
 
   }
 }
-
-
-
-// migrate_post_qtranslatex2sublanguage(get_post(184));
-
 
 function migrate_qtranslatex2sublanguage() {
 
