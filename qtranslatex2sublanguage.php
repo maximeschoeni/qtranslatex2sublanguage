@@ -93,13 +93,13 @@ function qtranslatex2sublanguage_migrate_post($result) {
 		));
 		foreach ($keys as $key) {
 			$fields = $langs[$key];
-			if (isset($fields['title']) && $fields['title']) {
+			if (isset($fields['title']) && $fields['title'] && $key) {
 				update_post_meta($result->ID, "_{$key}_post_title", $fields['title']);
 			}
-			if (isset($fields['content']) && $fields['content']) {
+			if (isset($fields['content']) && $fields['content'] && $key) {
 				update_post_meta($result->ID, "_{$key}_post_content", $fields['content']);
 			}
-			if (isset($fields['excerpt']) && $fields['excerpt']) {
+			if (isset($fields['excerpt']) && $fields['excerpt'] && $key) {
 				update_post_meta($result->ID, "_{$key}_post_excerpt", $fields['excerpt']);
 			}
 		}
