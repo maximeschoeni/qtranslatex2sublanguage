@@ -106,18 +106,38 @@ function qtranslatex2sublanguage_migrate_post($result) {
 	}
 }
 
+function qtranslatex2sublanguage_migrate_term($result) {
+	$qtranslate_translated_terms = get_option( 'qtranslate_term_name' );
+	if (isset($qtranslate_translated_terms[$result->name])) {
+		foreach ($qtranslate_translated_terms[$result->name] as $key => $translated_name) {
+			update_term_meta($result->term_id, "_{$key}_name", $translated_name);
+		}
+	}
+}
+
 
 function qtranslatex2sublanguage_migrate() {
 
 	register_batch_process( array(
-		'name'     => 'qtranslateX to Sublanguage',
+		'name'     => 'qTranslateX to Sublanguage Migrate Posts',
 		'type'     => 'post',
 		'callback' => 'qtranslatex2sublanguage_migrate_post',
 		'args'     => array(
 			'posts_per_page' => 1,
 			'post_type'      => 'any',
 		),
-	) );
+	));
+
+	register_batch_process( array(
+		'name'     => 'qTranslateX to Sublanguage Migrate Terms',
+		'type'     => 'term',
+		'callback' => 'qtranslatex2sublanguage_migrate_term',
+		'args'     => array(
+			'number' => 1,
+			'hide_empty' => false,
+			'taxonomy' => get_taxonomies()
+		),
+	));
 }
 
 add_action( 'locomotive_init', 'qtranslatex2sublanguage_migrate' );

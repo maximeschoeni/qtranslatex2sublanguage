@@ -2,4 +2,4 @@
 
 Require plugin [Locomotive](https://github.com/reaktivstudios/locomotive).
 
-Export post title, content and excerpt from qTranslateX to Sublanguage.
+Create a batch for export post fields (post_title, post_content, post_excerpt) and term names from qTranslateX to Sublanguage.
